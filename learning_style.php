@@ -15,6 +15,7 @@ if (!$course_id || !$style) {
     exit();
 }
 
+
 // Fetch course title
 $stmt = $conn->prepare("SELECT title FROM courses WHERE id = ?");
 $stmt->bind_param("i", $course_id);
@@ -73,6 +74,7 @@ $result = $stmt->get_result();
   <?php else: ?>
     <p>No topics found for this learning style yet.</p>
   <?php endif; ?>
+  
 </main>
 
 <footer>
