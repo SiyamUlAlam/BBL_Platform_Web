@@ -29,7 +29,12 @@ $stmt->close();
   <title>Explore <?php echo htmlspecialchars($course_title); ?></title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; padding: 2rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+    }
     .card {
       padding: 1rem;
       background: #f0f8ff;
@@ -38,7 +43,10 @@ $stmt->close();
       text-align: center;
       transition: 0.3s;
     }
-    .card:hover { background: #e6f2ff; transform: scale(1.02); }
+    .card:hover {
+      background: #e6f2ff;
+      transform: scale(1.02);
+    }
     .card a {
       display: inline-block;
       margin-top: 0.5rem;
@@ -67,15 +75,19 @@ $stmt->close();
     $styles = [
       'linguistic', 'logical-mathematical', 'spatial',
       'bodily-kinesthetic', 'musical', 'interpersonal',
-      'intrapersonal', 'naturalist'
+      'intrapersonal', 'naturalist', 'quizz'
     ];
 
     foreach ($styles as $style):
+      $label = $style === 'quizz' ? 'Quiz' : ucwords(str_replace('-', ' ', $style));
     ?>
     <div class="card">
-      <h3><?php echo ucwords(str_replace('-', ' ', $style)); ?></h3>
-      <a href="learning_style.php?course_id=<?php echo $course_id; ?>&style=<?php echo $style; ?>">Explore</a>
-
+      <h3><?php echo $label; ?></h3>
+      <?php if ($style === 'quizz'): ?>
+        <a href="quizzes.php?course_id=<?php echo $course_id; ?>">Explore</a>
+      <?php else: ?>
+        <a href="learning_style.php?course_id=<?php echo $course_id; ?>&style=<?php echo $style; ?>">Explore</a>
+      <?php endif; ?>
     </div>
     <?php endforeach; ?>
   </div>
