@@ -2,7 +2,7 @@
 $host = 'localhost';
 $user = 'root';
 $pass = '';
-$db   = 'bbl_platform';
+$db   = 'brain_bl';
 
 $conn = new mysqli($host, $user, $pass, $db);
 
