@@ -2,39 +2,32 @@
 session_start();
 include("includes/db.php");
 
-// Check if user is logged in and is admin
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
+// Check if admin is logged in
+if (!isset($_SESSION['user_id']) || $_SESSION['is_admin'] != 1) {
     header("Location: login.php");
     exit();
 }
 
-// Get topic ID from query
+// Get topic ID from query parameter
 $topic_id = $_GET['id'] ?? null;
 
 if (!$topic_id) {
-    echo "Invalid topic ID.";
+    // No topic ID provided, redirect back with error
+    header("Location: admin_manage_topic.php?msg=invalid_id");
     exit();
 }
 
-// Delete file from server if it exists
-$stmt = $conn->prepare("SELECT file_path FROM topics WHERE id = ?");
-$stmt->bind_param("i", $topic_id);
-$stmt->execute();
-$stmt->bind_result($file_path);
-$stmt->fetch();
-$stmt->close();
-
-if ($file_path && file_exists($file_path)) {
-    unlink($file_path); // Remove file
-}
-
-// Delete topic from database
+// Prepare delete statement
 $stmt = $conn->prepare("DELETE FROM topics WHERE id = ?");
 $stmt->bind_param("i", $topic_id);
+
 if ($stmt->execute()) {
-    header("Location: admin_manage_topics.php?message=Topic+deleted+successfully");
+    // Successfully deleted
+    header("Location: admin_manage_topic.php?msg=deleted");
+    exit();
 } else {
-    echo "Error deleting topic.";
+    // Error occurred
+    header("Location: admin_manage_topic.php?msg=error");
+    exit();
 }
-$stmt->close();
 ?>
