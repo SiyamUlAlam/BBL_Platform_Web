@@ -41,6 +41,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
+<?php
+$show_login_notice = isset($_GET['msg']) && $_GET['msg'] === 'loginfirst';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -214,6 +217,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </style>
 </head>
 <body>
+<?php if (!empty($show_login_notice)): ?>
+    <div style="background: #e6f9f0; color: #357ab8; border: 2px solid #27ae60; border-radius: 8px; padding: 1rem 1.5rem; margin: 2rem auto 1.5rem auto; max-width: 420px; font-weight: 700; font-size: 1.08rem; text-align: center; box-shadow: 0 2px 12px rgba(52,152,219,0.10);">
+        Please log in to start your learning with <span style="color:#27ae60;">BBL Platform</span>.
+    </div>
+<?php endif; ?>
 <header>
     <div class="navbar">
         <div class="logo">
@@ -252,7 +260,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 Don't have an account? <a href="register.php">Register here</a>
         </div>
 </div>
+
 </main>
+
+<a class="side-nav-btn left" href="#" onclick="history.back(); return false;" title="Go back" style="position: fixed; top: 50%; left: 24px; z-index: 9999; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; background: #f4f8fb; color: #357ab8; border: none; border-radius: 50%; width: 48px; height: 48px; box-shadow: 0 2px 8px rgba(52,152,219,0.10); cursor: pointer; transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s; text-decoration: none; outline: none; font-size: 1.1rem;">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg>
+</a>
+<a class="side-nav-btn right" href="#" onclick="history.forward(); return false;" title="Go forward" style="position: fixed; top: 50%; right: 24px; z-index: 9999; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; background: #f4f8fb; color: #357ab8; border: none; border-radius: 50%; width: 48px; height: 48px; box-shadow: 0 2px 8px rgba(52,152,219,0.10); cursor: pointer; transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s; text-decoration: none; outline: none; font-size: 1.1rem;">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" style="transform: scaleX(-1)"><path d="M15 18l-6-6 6-6"/></svg>
+</a>
+
+<style>
+.side-nav-btn:hover, .side-nav-btn:focus {
+    background: #357ab8 !important;
+    color: #fff !important;
+    box-shadow: 0 4px 16px rgba(52,152,219,0.13) !important;
+    transform: translateY(-50%) scale(1.08) !important;
+}
+@media (max-width: 700px) {
+    .side-nav-btn.left { left: 6px !important; }
+    .side-nav-btn.right { right: 6px !important; }
+    .side-nav-btn { width: 38px !important; height: 38px !important; }
+    .side-nav-btn svg { width: 20px !important; height: 20px !important; }
+}
+</style>
 
 <script>
     function toggleMenu() {

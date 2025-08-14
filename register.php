@@ -209,7 +209,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </form>
                         <p style="text-align:center; margin-top:1rem;">Already have an account? <a href="login.php">Login</a></p>
         </div>
+
 </main>
+
+<a class="side-nav-btn left" href="#" onclick="history.back(); return false;" title="Go back" style="position: fixed; top: 50%; left: 24px; z-index: 9999; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; background: #f4f8fb; color: #357ab8; border: none; border-radius: 50%; width: 48px; height: 48px; box-shadow: 0 2px 8px rgba(52,152,219,0.10); cursor: pointer; transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s; text-decoration: none; outline: none; font-size: 1.1rem;">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg>
+</a>
+<a class="side-nav-btn right" href="#" onclick="history.forward(); return false;" title="Go forward" style="position: fixed; top: 50%; right: 24px; z-index: 9999; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; background: #f4f8fb; color: #357ab8; border: none; border-radius: 50%; width: 48px; height: 48px; box-shadow: 0 2px 8px rgba(52,152,219,0.10); cursor: pointer; transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s; text-decoration: none; outline: none; font-size: 1.1rem;">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" style="transform: scaleX(-1)"><path d="M15 18l-6-6 6-6"/></svg>
+</a>
+
+<style>
+.side-nav-btn:hover, .side-nav-btn:focus {
+        background: #357ab8 !important;
+        color: #fff !important;
+        box-shadow: 0 4px 16px rgba(52,152,219,0.13) !important;
+        transform: translateY(-50%) scale(1.08) !important;
+}
+@media (max-width: 700px) {
+        .side-nav-btn.left { left: 6px !important; }
+        .side-nav-btn.right { right: 6px !important; }
+        .side-nav-btn { width: 38px !important; height: 38px !important; }
+        .side-nav-btn svg { width: 20px !important; height: 20px !important; }
+}
+</style>
 
 <footer>
         <p style="text-align:center; padding: 1.5rem; margin-top: 2rem; background: #f1f1f1; font-size: 0.9rem; color: #666;">&copy; 2025 My Learning Platform</p>
