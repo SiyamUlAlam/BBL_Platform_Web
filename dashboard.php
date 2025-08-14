@@ -23,54 +23,149 @@ $stmt->close();
   <title>User Dashboard</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background-color: #f3f3f3;
+    .footer {
+      background: #232946;
+      color: #fff;
+      width: 100%;
+      margin-top: 0;
+      padding: 0;
     }
-
-    header {
-      background: #185a9d;
-      color: white;
-      padding: 1rem 2rem;
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .footer-content strong {
+      color: #43cea2;
+    }
+    .footer-content a {
+      color: #f4faff;
+      text-decoration: none;
+      margin-right: 10px;
+      transition: color 0.2s;
+    }
+    .footer-content a:hover {
+      color: #43cea2;
+      text-decoration: underline;
+    }
+    .footer-content div {
+      flex: 1 1 200px;
+      min-width: 180px;
+    }
+    body {
+      background: linear-gradient(to right, #43cea2, #185a9d);
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .main-wrapper {
+      flex: 1 0 auto;
+    }
+    .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
+      padding: 1rem 2rem;
+      background: linear-gradient(90deg, #4a90e2, #357ab8);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-
-    nav a {
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-item {
       color: white;
-      margin-left: 1rem;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 700;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      position: relative;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+      box-shadow: 0 2px 8px rgba(52, 152, 219, 0);
     }
-
-    nav a:hover {
-      text-decoration: underline;
+    .nav-item:hover {
+      background: #fff;
+      color: #357ab8;
+      box-shadow: 0 2px 8px rgba(52, 152, 219, 0.15);
+      transform: translateY(-2px) scale(1.07);
     }
-
+    .nav-item.active {
+      background: #fff;
+      color: #357ab8;
+      font-weight: 900;
+      box-shadow: 0 2px 12px rgba(52, 152, 219, 0.18);
+      border: 2px solid #357ab8;
+      transform: scale(1.12);
+      z-index: 2;
+    }
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      margin-left: 1rem;
+    }
+    @media (max-width: 900px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+      }
+      .nav-links {
+        width: 100%;
+        flex-direction: column;
+        gap: 0.5rem;
+        display: none;
+        background: #357ab8;
+        border-radius: 0 0 10px 10px;
+        margin-top: 0.5rem;
+        padding: 1rem 0;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
     main {
       text-align: center;
       padding: 2rem;
     }
-
     .cta-button {
       display: inline-block;
       margin-top: 1.5rem;
-      padding: 0.75rem 1.5rem;
-      background-color: #4CAF50;
-      color: white;
+      padding: 0.9rem 2rem;
+      background: linear-gradient(90deg, #43cea2 0%, #4a90e2 50%, #357ab8 100%);
+      color: #fff;
       text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 16px rgba(52, 152, 219, 0.10);
+      transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
     }
-
     .cta-button:hover {
-      background-color: #45a049;
+      background: linear-gradient(90deg, #357ab8 0%, #4a90e2 80%, #43cea2 100%);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(52, 152, 219, 0.18);
+      transform: translateY(-2px) scale(1.04);
     }
-
     /* Slider Styles */
     .slider {
       position: relative;
@@ -81,25 +176,21 @@ $stmt->close();
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
-
     .slides {
       display: flex;
       transition: transform 0.5s ease-in-out;
       width: 3000px; /* 3 slides * 1000px */
     }
-
     .slides img {
       width: 1000px;
       height: 400px;
       object-fit: cover;
       flex-shrink: 0;
     }
-
     .dots {
       text-align: center;
       margin-top: 10px;
     }
-
     .dot {
       height: 12px;
       width: 12px;
@@ -110,11 +201,9 @@ $stmt->close();
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-
     .active-dot {
       background-color: #333;
     }
-
     footer {
       background: #222;
       color: white;
@@ -122,18 +211,15 @@ $stmt->close();
       text-align: center;
       margin-top: 2rem;
     }
-
     @media (max-width: 1020px) {
       .slider, .slides img {
         width: 100%;
         height: auto;
       }
-
       .slides {
         width: 300%;
       }
     }
-
     .name1{
       color:rgb(66, 241, 183);
       font-weight: bold;
@@ -145,24 +231,34 @@ $stmt->close();
     .name3{
       color:rgb(156, 230, 171);
       font-weight: bold;
-
-
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1><Span class="name1">Brain<span class="name3">-</span>Based</Span><Span class="name2">Learning</Span></h1>
-  <nav>
-    <a href="courses.php">Explore Courses</a>
-    <?php if ($is_admin): ?>
-      <a href="admin.php">Admin Panel</a>
-    <?php endif; ?>
-    <a href="logout.php">Logout</a>
-  </nav>
+  <div class="navbar">
+    <div class="logo">
+      <a href="dashboard.php" class="logo" style="display: flex; align-items: center; text-decoration: none; color: white;">
+        <img src="images/BBL-Logo.png" alt="Brain-Based Learning Portal" style="height: 40px; width: auto; margin-right: 10px;">
+        <span class="name1">Brain<span class="name3">-</span>Based</span><span class="name2">Learning</span>
+      </a>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="dashboard.php" class="nav-item active">Dashboard</a>
+      <a href="courses.php" class="nav-item">Courses</a>
+      <?php if ($is_admin): ?>
+        <a href="admin.php" class="nav-item">Admin Panel</a>
+      <?php endif; ?>
+      <a href="logout.php" class="nav-item">Logout</a>
+    </nav>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </div>
+  </div>
 </header>
 
+<div class="main-wrapper">
 <main>
   <h2>Hello, <?php echo htmlspecialchars($name); ?>!</h2>
   <p>We're glad to have you back. Start your learning journey below.</p>
@@ -181,13 +277,34 @@ $stmt->close();
     <span class="dot" onclick="moveToSlide(1)"></span>
     <span class="dot" onclick="moveToSlide(2)"></span>
   </div>
-</main>
+ </main>
+</div>
 
-<footer>
-  <p>&copy; 2025 My Learning Platform. All rights reserved.</p>
+<footer class="footer">
+  <div class="footer-content">
+    <div>
+      <strong>&copy; 2025 Brain-Based Learning Platform</strong><br>
+      Empowering learners with science-backed education.
+    </div>
+    <div>
+      <strong>Quick Links</strong><br>
+      <a href="dashboard.php">Dashboard</a>
+      <a href="courses.php">Courses</a>
+      <a href="explore.php?course_id=1">Explore</a>
+      <a href="logout.php">Logout</a>
+    </div>
+    <div>
+      <strong>Contact</strong><br>
+      Email: <a href="mailto:2002032@icte.bdu.ac.bd">2002032@icte.bdu.ac.bd</a><br>
+      <span>Phone: +8801887240900</span>
+    </div>
+  </div>
 </footer>
 
 <script>
+  function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+  }
   let slideIndex = 0;
   const slides = document.getElementById('slideTrack');
   const dots = document.querySelectorAll('.dot');

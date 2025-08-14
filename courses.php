@@ -50,6 +50,40 @@ if (!empty($search)) {
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    .footer {
+      background: #232946;
+      color: #fff;
+      width: 100%;
+      margin-top: 0;
+      padding: 0;
+    }
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .footer-content strong {
+      color: #43cea2;
+    }
+    .footer-content a {
+      color: #f4faff;
+      text-decoration: none;
+      margin-right: 10px;
+      transition: color 0.2s;
+    }
+    .footer-content a:hover {
+      color: #43cea2;
+      text-decoration: underline;
+    }
+    .footer-content div {
+      flex: 1 1 200px;
+      min-width: 180px;
+    }
     * {
       box-sizing: border-box;
       margin: 0;
@@ -58,81 +92,94 @@ if (!empty($search)) {
     }
 
     body {
-      background: #f2f4f8;
+      background: linear-gradient(to right, #43cea2, #185a9d);
+      min-height: 100vh;
+      margin: 0;
       color: #333;
-      animation: fadeIn 1s ease-in-out;
+      display: flex;
+      flex-direction: column;
+    }
+    .main-wrapper {
+      flex: 1 0 auto;
     }
 
-    /* Navigation Styles */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: linear-gradient(90deg, #4a90e2, #357ab8);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
+    /* Unified Navigation Bar Styles */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-      color: white;
+      background: linear-gradient(90deg, #4a90e2, #357ab8);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-
     .logo {
       font-size: 1.5rem;
       font-weight: 600;
       display: flex;
       align-items: center;
       gap: 10px;
+      color: white;
+      text-decoration: none;
     }
-
     .nav-links {
       display: flex;
       gap: 1.5rem;
     }
-
-    .nav-links a {
+    .nav-item {
       color: white;
       text-decoration: none;
-      font-weight: 800;
-      padding: 0.5rem 0.8rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 0.5rem 1.2rem;
       border-radius: 6px;
-      transition: background 0.3s, transform 0.3s;
+      position: relative;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+      box-shadow: 0 2px 8px rgba(52, 152, 219, 0);
+      display: inline-block;
     }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      background: rgba(255, 255, 255, 0.15);
-      transform: scale(1.05);
+    .nav-item:hover {
+      background: #fff;
+      color: #357ab8;
+      box-shadow: 0 2px 8px rgba(52, 152, 219, 0.15);
+      transform: translateY(-2px) scale(1.07);
     }
-
+    .nav-item.active {
+      background: #fff;
+      color: #357ab8;
+      font-weight: 900;
+      box-shadow: 0 2px 12px rgba(52, 152, 219, 0.18);
+      border: 2px solid #357ab8;
+      transform: scale(1.12);
+      z-index: 2;
+    }
     .menu-toggle {
       display: none;
-      font-size: 1.5rem;
       cursor: pointer;
+      margin-left: 1rem;
     }
-
-    @media (max-width: 768px) {
-      .nav-links {
+    @media (max-width: 900px) {
+      .navbar {
         flex-direction: column;
-        background: #357ab8;
-        position: absolute;
-        top: 70px;
-        right: 0;
-        width: 200px;
-        display: none;
+        align-items: flex-start;
         padding: 1rem;
-        border-radius: 0 0 0 10px;
       }
-
+      .nav-links {
+        width: 100%;
+        flex-direction: column;
+        gap: 0.5rem;
+        display: none;
+        background: #357ab8;
+        border-radius: 0 0 10px 10px;
+        margin-top: 0.5rem;
+        padding: 1rem 0;
+      }
       .nav-links.active {
         display: flex;
       }
-
       .menu-toggle {
         display: block;
       }
@@ -317,26 +364,30 @@ if (!empty($search)) {
 
 <body>
 
-<header>
-  <div class="navbar">
-    <div class="logo">
-      <a href="dashboard.php" class="logo" style="display: flex; align-items: center; text-decoration: none; color: white;">
-      <img src="images/BBL-Logo.png" alt="Brain-Based Learning Portal" style="height: 40px; width: auto; margin-right: 10px;">
-       <Span class="name1">Brain<span class="name3">-</span>Based</Span><Span class="name2">Learning</Span>
-      </a>
+  <header>
+    <div class="navbar">
+      <div class="logo">
+        <a href="dashboard.php" class="logo" style="display: flex; align-items: center; text-decoration: none; color: white;">
+          <img src="images/BBL-Logo.png" alt="Brain-Based Learning Portal" style="height: 40px; width: auto; margin-right: 10px;">
+          <span class="name1">Brain<span class="name3">-</span>Based</span><span class="name2">Learning</span>
+        </a>
       </div>
-    <nav class="nav-links" id="navLinks">
-      <a href="dashboard.php">Dashboard</a>
-      <a href="courses.php" class="active">Courses</a>
-      <a href="logout.php">Logout</a>
-    </nav>
-    <div class="menu-toggle" onclick="toggleMenu()">
-      <i class="fas fa-bars"></i>
+      <nav class="nav-links" id="navLinks">
+        <a href="dashboard.php" class="nav-item">Dashboard</a>
+        <a href="courses.php" class="nav-item active">Courses</a>
+        <?php if ($is_admin): ?>
+          <a href="admin.php" class="nav-item">Admin Panel</a>
+        <?php endif; ?>
+        <a href="logout.php" class="nav-item">Logout</a>
+      </nav>
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
 
+<div class="main-wrapper">
 <main>
 
   <?php if ($is_admin): ?>
@@ -373,17 +424,35 @@ if (!empty($search)) {
     <?php endwhile; ?>
   </div>
 
-</main>
+ </main>
+</div>
 
-<footer>
-  <p>&copy; 2025 My Learning Platform</p>
+<footer class="footer">
+  <div class="footer-content">
+    <div>
+      <strong>&copy; 2025 Brain-Based Learning Platform</strong><br>
+      Empowering learners with science-backed education.
+    </div>
+    <div>
+      <strong>Quick Links</strong><br>
+      <a href="dashboard.php">Dashboard</a>
+      <a href="courses.php">Courses</a>
+      <a href="explore.php?course_id=1">Explore</a>
+      <a href="logout.php">Logout</a>
+    </div>
+    <div>
+      <strong>Contact</strong><br>
+      Email: <a href="mailto:2002032@icte.bdu.ac.bd">2002032@icte.bdu.ac.bd</a><br>
+      <span>Phone: +8801887240900</span>
+    </div>
+  </div>
 </footer>
 
-<script>
-  function toggleMenu() {
-    document.getElementById("navLinks").classList.toggle("active");
-  }
-</script>
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+  </script>
 
 </body>
 </html>
