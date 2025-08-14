@@ -15,7 +15,7 @@ $courses = $conn->query("SELECT id, title FROM courses");
 $styles = [
     'linguistic', 'logical-mathematical', 'spatial',
     'bodily-kinesthetic', 'musical', 'interpersonal',
-    'intrapersonal', 'naturalist'
+    'intrapersonal', 'naturalist', 'quizz'
 ];
 
 $message = "";

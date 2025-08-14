@@ -312,6 +312,7 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
             <h2>Welcome, Admin</h2>
             <a href="admin_add_topic.php">➕ Add New Topic</a>
             <a href="admin_manage_topic.php">🛠 Manage Topics</a>
+            <a href="admin_quiz_management.php">🎯 Quiz</a>
             <a href="courses.php">📚 View Courses</a>
             <a href="explore.php?course_id=1">🔍 Explore Learning Styles</a>
         </div>

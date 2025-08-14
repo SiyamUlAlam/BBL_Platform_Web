@@ -56,6 +56,8 @@ $show_login_notice = isset($_GET['msg']) && $_GET['msg'] === 'loginfirst';
                 background: linear-gradient(to right, #43cea2, #185a9d);
                 min-height: 100vh;
                 margin: 0;
+                display: flex;
+                flex-direction: column;
             }
             .navbar {
                 display: flex;
@@ -241,7 +243,7 @@ $show_login_notice = isset($_GET['msg']) && $_GET['msg'] === 'loginfirst';
     </div>
 </header>
 
-<main>
+<main style="flex: 1 0 auto;">
 <div class="login-container">
         <h2>Login</h2>
         <form method="POST" action="login.php">
@@ -263,6 +265,27 @@ $show_login_notice = isset($_GET['msg']) && $_GET['msg'] === 'loginfirst';
 
 </main>
 
+<footer class="footer">
+  <div class="footer-content">
+    <div>
+      <strong>&copy; 2025 Brain-Based Learning Platform</strong><br>
+      Empowering learners with science-backed education.
+    </div>
+    <div>
+      <strong>Quick Links</strong><br>
+      <a href="dashboard.php">Dashboard</a>
+      <a href="courses.php">Courses</a>
+      <a href="login.php">Login</a>
+      <a href="register.php">Register</a>
+    </div>
+    <div>
+      <strong>Contact</strong><br>
+      Email: <a href="mailto:2002032@icte.bdu.ac.bd">2002032@icte.bdu.ac.bd</a><br>
+      <span>Phone: +8801887240900</span>
+    </div>
+  </div>
+</footer>
+
 <a class="side-nav-btn left" href="#" onclick="history.back(); return false;" title="Go back" style="position: fixed; top: 50%; left: 24px; z-index: 9999; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; background: #f4f8fb; color: #357ab8; border: none; border-radius: 50%; width: 48px; height: 48px; box-shadow: 0 2px 8px rgba(52,152,219,0.10); cursor: pointer; transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s; text-decoration: none; outline: none; font-size: 1.1rem;">
     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg>
 </a>
@@ -282,6 +305,40 @@ $show_login_notice = isset($_GET['msg']) && $_GET['msg'] === 'loginfirst';
     .side-nav-btn.right { right: 6px !important; }
     .side-nav-btn { width: 38px !important; height: 38px !important; }
     .side-nav-btn svg { width: 20px !important; height: 20px !important; }
+}
+.footer {
+    background: #232946;
+    color: #fff;
+    width: 100%;
+    margin-top: 0;
+    padding: 0;
+}
+.footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+.footer-content strong {
+    color: #43cea2;
+}
+.footer-content a {
+    color: #f4faff;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: color 0.2s;
+}
+.footer-content a:hover {
+    color: #43cea2;
+    text-decoration: underline;
+}
+.footer-content div {
+    flex: 1 1 200px;
+    min-width: 180px;
 }
 </style>
 

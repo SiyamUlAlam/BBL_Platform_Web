@@ -172,8 +172,8 @@ if (!empty($search)) {
       display: flex;
       align-items: center;
       gap: 10px;
-      color: white;
-      text-decoration: none;
+      /* color: white;
+      text-decoration: none; */
     }
     .nav-links {
       display: flex;
@@ -182,15 +182,12 @@ if (!empty($search)) {
     .nav-item {
       color: white;
       text-decoration: none;
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
       font-weight: 700;
       padding: 0.5rem 1.2rem;
       border-radius: 6px;
       position: relative;
       transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
       box-shadow: 0 2px 8px rgba(52, 152, 219, 0);
-      display: inline-block;
     }
     .nav-item:hover {
       background: #fff;
@@ -414,6 +411,7 @@ if (!empty($search)) {
 </head>
 
 <body>
+
 
   <header>
     <div class="navbar">

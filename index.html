@@ -157,12 +157,36 @@
     footer {
       background: #232946;
       color: #fff;
-      text-align: center;
-      padding: 1.2rem 0 0.7rem 0;
-      margin-top: auto;
-      font-size: 1rem;
-      letter-spacing: 0.2px;
-      box-shadow: 0 -2px 12px rgba(52,152,219,0.08);
+      width: 100%;
+      margin-top: 0;
+      padding: 0;
+    }
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .footer-content strong {
+      color: #43cea2;
+    }
+    .footer-content a {
+      color: #f4faff;
+      text-decoration: none;
+      margin-right: 10px;
+      transition: color 0.2s;
+    }
+    .footer-content a:hover {
+      color: #43cea2;
+      text-decoration: underline;
+    }
+    .footer-content div {
+      flex: 1 1 200px;
+      min-width: 180px;
     }
     @media (max-width: 900px) {
       .overview-section {
@@ -222,7 +246,23 @@
   </section>
 
   <footer>
-    <p>&copy; 2025 Brain-Based Learning Platform. Empowering learners with science-backed education.</p>
+    <div class="footer-content">
+      <div>
+        <strong>&copy; 2025 Brain-Based Learning Platform</strong><br>
+        Empowering learners with science-backed education.
+      </div>
+      <div>
+        <strong>Quick Links</strong><br>
+        <a href="login.php">Login</a>
+        <a href="register.php">Register</a>
+        <a href="courses.php">Explore Courses</a>
+      </div>
+      <div>
+        <strong>Contact</strong><br>
+        Email: <a href="mailto:2002032@icte.bdu.ac.bd">2002032@icte.bdu.ac.bd</a><br>
+        <span>Phone: +8801887240900</span>
+      </div>
+    </div>
   </footer>
 
 </body>

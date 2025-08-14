@@ -232,10 +232,61 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         .side-nav-btn { width: 38px !important; height: 38px !important; }
         .side-nav-btn svg { width: 20px !important; height: 20px !important; }
 }
+        .footer {
+            background: #232946;
+            color: #fff;
+            width: 100%;
+            margin-top: 0;
+            padding: 0;
+        }
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        .footer-content strong {
+            color: #43cea2;
+        }
+        .footer-content a {
+            color: #f4faff;
+            text-decoration: none;
+            margin-right: 10px;
+            transition: color 0.2s;
+        }
+        .footer-content a:hover {
+            color: #43cea2;
+            text-decoration: underline;
+        }
+        .footer-content div {
+            flex: 1 1 200px;
+            min-width: 180px;
+        }
 </style>
 
-<footer>
-        <p style="text-align:center; padding: 1.5rem; margin-top: 2rem; background: #f1f1f1; font-size: 0.9rem; color: #666;">&copy; 2025 My Learning Platform</p>
+<footer class="footer">
+  <div class="footer-content">
+    <div>
+      <strong>&copy; 2025 Brain-Based Learning Platform</strong><br>
+      Empowering learners with science-backed education.
+    </div>
+    <div>
+      <strong>Quick Links</strong><br>
+      <a href="dashboard.php">Dashboard</a>
+      <a href="courses.php">Courses</a>
+      <a href="login.php">Login</a>
+      <a href="register.php">Register</a>
+    </div>
+    <div>
+      <strong>Contact</strong><br>
+      Email: <a href="mailto:2002032@icte.bdu.ac.bd">2002032@icte.bdu.ac.bd</a><br>
+      <span>Phone: +8801887240900</span>
+    </div>
+  </div>
 </footer>
 
 <script>
