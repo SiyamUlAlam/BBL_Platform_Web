@@ -127,11 +127,11 @@ $result = $stmt->get_result();
     }
     .main-wrapper { flex: 1 0 auto; }
     .topic-card {
-      background: #f9f9f9;
-      padding: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      margin-bottom: 1rem;
+  background: #e6f9f0;
+  padding: 1rem;
+  border: 1.5px solid #d2e6ef;
+  border-radius: 12px;
+  margin-bottom: 1.2rem;
     }
     .footer {
       background: #232946;
@@ -167,6 +167,50 @@ $result = $stmt->get_result();
       flex: 1 1 200px;
       min-width: 180px;
     }
+    .side-nav-btn {
+        position: fixed;
+        top: 50%;
+        z-index: 9999;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f4f8fb;
+        color: #357ab8;
+        border: none;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        box-shadow: 0 2px 8px rgba(52,152,219,0.10);
+        cursor: pointer;
+        transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
+        text-decoration: none;
+        outline: none;
+        font-size: 1.1rem;
+    }
+    .side-nav-btn:hover, .side-nav-btn:focus {
+        background: #357ab8;
+        color: #fff;
+        box-shadow: 0 4px 16px rgba(52,152,219,0.13);
+        transform: translateY(-50%) scale(1.08);
+    }
+    .side-nav-btn svg {
+        width: 26px;
+        height: 26px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2.2;
+        display: block;
+    }
+    .side-nav-btn.left { left: 24px; }
+    .side-nav-btn.right { right: 24px; }
+    @media (max-width: 700px) {
+        .side-nav-btn.left { left: 6px; }
+        .side-nav-btn.right { right: 6px; }
+        .side-nav-btn { width: 38px; height: 38px; }
+        .side-nav-btn svg { width: 20px; height: 20px; }
+    }
+
   </style>
 </head>
 <body>
@@ -180,10 +224,9 @@ $result = $stmt->get_result();
       </a>
     </div>
     <nav class="nav-links" id="navLinks">
-      <a href="dashboard.php" class="nav-item">Dashboard</a>
-      <a href="courses.php" class="nav-item">Courses</a>
-      <a href="explore.php?course_id=<?php echo $course_id; ?>" class="nav-item">Back</a>
-      <a href="logout.php" class="nav-item">Logout</a>
+  <a href="dashboard.php" class="nav-item">Dashboard</a>
+  <a href="courses.php" class="nav-item">Courses</a>
+  <a href="logout.php" class="nav-item">Logout</a>
     </nav>
     <div class="menu-toggle" onclick="toggleMenu()">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -210,6 +253,12 @@ $result = $stmt->get_result();
   
  </main>
 </div>
+<a class="side-nav-btn left" href="#" onclick="history.back(); return false;" title="Go back">
+    <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+</a>
+<a class="side-nav-btn right" href="#" onclick="history.forward(); return false;" title="Go forward">
+    <svg viewBox="0 0 24 24" style="transform: scaleX(-1)"><path d="M15 18l-6-6 6-6"/></svg>
+</a>
 
 <footer class="footer">
   <div class="footer-content">

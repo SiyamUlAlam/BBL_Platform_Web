@@ -55,7 +55,7 @@ $result = $stmt->get_result();
 <html lang="en">
 <head>
     <style>
-      .back-btn {
+      .nav-btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -65,21 +65,21 @@ $result = $stmt->get_result();
         border-radius: 50%;
         width: 40px;
         height: 40px;
-        margin-bottom: 1.2rem;
-        margin-left: 0.2rem;
+        margin: 0 10px;
         box-shadow: 0 2px 8px rgba(52, 152, 219, 0.10);
         cursor: pointer;
         transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
         text-decoration: none;
         outline: none;
+        font-size: 1rem;
       }
-      .back-btn:hover, .back-btn:focus {
+      .nav-btn:hover, .nav-btn:focus {
         background: #357ab8;
         color: #fff;
         box-shadow: 0 4px 16px rgba(52, 152, 219, 0.13);
         transform: translateY(-2px) scale(1.08);
       }
-      .back-btn svg {
+      .nav-btn svg {
         width: 22px;
         height: 22px;
         fill: none;
@@ -88,22 +88,29 @@ $result = $stmt->get_result();
         display: block;
       }
       @media (max-width: 600px) {
-        .back-btn {
+        .nav-btn {
           width: auto;
           height: auto;
           border-radius: 6px;
           padding: 7px 18px 7px 14px;
           gap: 7px;
         }
-        .back-btn span {
+        .nav-btn span {
           display: inline;
         }
       }
-      .back-btn span {
+      .nav-btn span {
         display: none;
         margin-left: 6px;
         font-weight: 600;
         font-size: 1rem;
+      }
+      .nav-btn-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1.2rem 0 1.2rem 0;
       }
     </style>
     <style>
@@ -342,10 +349,7 @@ $result = $stmt->get_result();
 </header>
 
 <div class="main-wrapper">
-  <a class="back-btn" href="#" onclick="history.back(); return false;" title="Go back">
-    <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-    <span>Back</span>
-  </a>
+  <!-- ...main content... -->
 <main>
   <form class="filter-form" method="get">
     <label>Course:
@@ -425,6 +429,59 @@ $result = $stmt->get_result();
 
 
 <footer class="footer">
+<style>
+  .side-nav-btn {
+    position: fixed;
+    top: 50%;
+    z-index: 9999;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f4f8fb;
+    color: #357ab8;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    box-shadow: 0 2px 8px rgba(52,152,219,0.10);
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
+    text-decoration: none;
+    outline: none;
+    font-size: 1.1rem;
+  }
+  .side-nav-btn:hover, .side-nav-btn:focus {
+    background: #357ab8;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(52,152,219,0.13);
+    transform: translateY(-50%) scale(1.08);
+  }
+  .side-nav-btn svg {
+    width: 26px;
+    height: 26px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    display: block;
+  }
+  .side-nav-btn.left { left: 24px; }
+  .side-nav-btn.right { right: 24px; }
+  @media (max-width: 700px) {
+    .side-nav-btn.left { left: 6px; }
+    .side-nav-btn.right { right: 6px; }
+    .side-nav-btn { width: 38px; height: 38px; }
+    .side-nav-btn svg { width: 20px; height: 20px; }
+  }
+</style>
+<a class="side-nav-btn left" href="#" onclick="history.back(); return false;" title="Go back">
+  <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+</a>
+<a class="side-nav-btn right" href="#" onclick="history.forward(); return false;" title="Go forward">
+  <svg viewBox="0 0 24 24" style="transform: scaleX(-1)"><path d="M15 18l-6-6 6-6"/></svg>
+</a>
+
+
   <div class="footer-content">
     <div>
       <strong>&copy; 2025 Brain-Based Learning Platform</strong><br>

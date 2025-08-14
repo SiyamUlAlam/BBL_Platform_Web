@@ -155,32 +155,116 @@ $stmt->close();
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      padding: 2rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      padding: 2.5rem 2rem;
+      max-width: 950px;
+      margin: 0 auto;
     }
     .card {
-      padding: 1rem;
-      background: #f0f8ff;
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      text-align: center;
-      transition: 0.3s;
+  background: #e6f9f0;
+  border: 1.5px solid #e0e7ef;
+  padding: 1.7rem 1.2rem 1.3rem 1.2rem;
+  border-radius: 16px;
+  min-height: 150px;
+  box-shadow: 0 4px 18px rgba(52, 152, 219, 0.10);
+  text-align: center;
+  transition: box-shadow 0.32s cubic-bezier(0.4,0,0.2,1), transform 0.32s cubic-bezier(0.4,0,0.2,1), background 0.32s cubic-bezier(0.4,0,0.2,1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+    }
+    .card h3 {
+      font-size: 1.18rem;
+      margin-bottom: 1rem;
+      color: #357ab8;
+      font-weight: 800;
+      letter-spacing: 0.5px;
     }
     .card:hover {
-      background: #e6f2ff;
-      transform: scale(1.02);
+  box-shadow: 0 10px 28px rgba(52, 152, 219, 0.13), 0 1.5px 6px rgba(52, 152, 219, 0.08);
+  transform: translateY(-6px) scale(1.025);
     }
     .card a {
       display: inline-block;
-      margin-top: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: #007BFF;
+      margin-top: 0.7rem;
+      padding: 0.6rem 1.3rem;
+  background: #27ae60;
       color: white;
-      border-radius: 5px;
+      border-radius: 7px;
       text-decoration: none;
+      font-size: 1.08rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      box-shadow: 0 2px 8px rgba(52, 152, 219, 0.10);
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .card a:hover {
+      background: #357ab8;
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(52, 152, 219, 0.13);
+      transform: scale(1.06);
+    }
+    @media (max-width: 992px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 700px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .card {
+        min-height: 120px;
+        padding: 1.1rem 0.7rem 1rem 0.7rem;
+      }
+    }
+    .side-nav-btn {
+        position: fixed;
+        top: 50%;
+        z-index: 9999;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f4f8fb;
+        color: #357ab8;
+        border: none;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        box-shadow: 0 2px 8px rgba(52,152,219,0.10);
+        cursor: pointer;
+        transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
+        text-decoration: none;
+        outline: none;
+        font-size: 1.1rem;
+    }
+    .side-nav-btn:hover, .side-nav-btn:focus {
+        background: #357ab8;
+        color: #fff;
+        box-shadow: 0 4px 16px rgba(52,152,219,0.13);
+        transform: translateY(-50%) scale(1.08);
+    }
+    .side-nav-btn svg {
+        width: 26px;
+        height: 26px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2.2;
+        display: block;
+    }
+    .side-nav-btn.left { left: 24px; }
+    .side-nav-btn.right { right: 24px; }
+    @media (max-width: 700px) {
+        .side-nav-btn.left { left: 6px; }
+        .side-nav-btn.right { right: 6px; }
+        .side-nav-btn { width: 38px; height: 38px; }
+        .side-nav-btn svg { width: 20px; height: 20px; }
     }
   </style>
+  
 </head>
 <body>
 
@@ -233,7 +317,12 @@ $stmt->close();
   </div>
  </main>
 </div>
-
+<a class="side-nav-btn left" href="#" onclick="history.back(); return false;" title="Go back">
+    <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+</a>
+<a class="side-nav-btn right" href="#" onclick="history.forward(); return false;" title="Go forward">
+    <svg viewBox="0 0 24 24" style="transform: scaleX(-1)"><path d="M15 18l-6-6 6-6"/></svg>
+</a>
 
   <!-- <p>&copy; 2025 My Learning Platform. All rights reserved.</p> -->
 <footer class="footer">
