@@ -62,6 +62,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+            <style>
+                .back-btn {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #f4f8fb;
+                    color: #357ab8;
+                    border: none;
+                    border-radius: 50%;
+                    width: 40px;
+                    height: 40px;
+                    margin-bottom: 1.2rem;
+                    margin-left: 0.2rem;
+                    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.10);
+                    cursor: pointer;
+                    transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
+                    text-decoration: none;
+                    outline: none;
+                }
+                .back-btn:hover, .back-btn:focus {
+                    background: #357ab8;
+                    color: #fff;
+                    box-shadow: 0 4px 16px rgba(52, 152, 219, 0.13);
+                    transform: translateY(-2px) scale(1.08);
+                }
+                .back-btn svg {
+                    width: 22px;
+                    height: 22px;
+                    fill: none;
+                    stroke: currentColor;
+                    stroke-width: 2.2;
+                    display: block;
+                }
+                @media (max-width: 600px) {
+                    .back-btn {
+                        width: auto;
+                        height: auto;
+                        border-radius: 6px;
+                        padding: 7px 18px 7px 14px;
+                        gap: 7px;
+                    }
+                    .back-btn span {
+                        display: inline;
+                    }
+                }
+                .back-btn span {
+                    display: none;
+                    margin-left: 6px;
+                    font-weight: 600;
+                    font-size: 1rem;
+                }
+            </style>
     <meta charset="UTF-8">
     <title>Add Topic - Admin</title>
     <link rel="stylesheet" href="css/style.css">
@@ -199,6 +251,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 <header>
+</header>
     <div class="navbar">
         <div class="logo">
             <a href="admin.php" class="logo" style="display: flex; align-items: center; text-decoration: none; color: white;">
@@ -217,6 +270,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </header>
 
 <div class="main-wrapper">
+    <a class="back-btn" href="#" onclick="history.back(); return false;" title="Go back">
+        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        <span>Back</span>
+    </a>
     <?php if ($message): ?>
         <p class="message"><?php echo htmlspecialchars($message); ?></p>
     <?php endif; ?>
