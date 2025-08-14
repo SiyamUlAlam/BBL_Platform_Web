@@ -4,11 +4,184 @@
   <meta charset="UTF-8">
   <title>BBL Platform</title>
   <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+      color: #232946;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: linear-gradient(90deg, #4a90e2 0%, #357ab8 100%);
+      color: #fff;
+      padding: 2rem 0 1.2rem 0;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(52,152,219,0.08);
+    }
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+    nav {
+      margin-top: 0.5rem;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0 1.2rem;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    nav a:hover {
+      background: #fff;
+      color: #357ab8;
+      box-shadow: 0 2px 8px rgba(52,152,219,0.13);
+      transform: translateY(-2px) scale(1.07);
+    }
+    .hero {
+      background: linear-gradient(120deg, #e6f9f0 60%, #eaf6fb 100%);
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(52,152,219,0.10);
+      max-width: 700px;
+      margin: 2.5rem auto 1.5rem auto;
+      padding: 2.5rem 2rem 2.2rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #357ab8;
+      margin-bottom: 0.7rem;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: #232946;
+      margin-bottom: 1.5rem;
+    }
+    .cta-button {
+      background: #27ae60;
+      color: #fff;
+      font-size: 1.15rem;
+      font-weight: 700;
+      padding: 0.8rem 2.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 2px 12px rgba(52,152,219,0.13);
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .cta-button:hover {
+      background: #357ab8;
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(52,152,219,0.15);
+      transform: scale(1.07);
+    }
+    .overview-section {
+      max-width: 950px;
+      margin: 0 auto 2.5rem auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      justify-content: center;
+      align-items: stretch;
+    }
+    .overview-card {
+      background: #e6f9f0;
+      border-radius: 16px;
+      box-shadow: 0 4px 18px rgba(52,152,219,0.10);
+      flex: 1 1 260px;
+      min-width: 240px;
+      max-width: 320px;
+      padding: 2rem 1.3rem 1.5rem 1.3rem;
+      text-align: center;
+      transition: box-shadow 0.28s, transform 0.28s;
+      position: relative;
+      overflow: hidden;
+    }
+    .overview-card:hover {
+      box-shadow: 0 10px 28px rgba(52,152,219,0.13), 0 1.5px 6px rgba(52,152,219,0.08);
+      transform: translateY(-6px) scale(1.025);
+    }
+    .overview-card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #27ae60;
+      display: block;
+    }
+    .overview-card h3 {
+      font-size: 1.18rem;
+      color: #357ab8;
+      font-weight: 800;
+      margin-bottom: 0.7rem;
+    }
+    .overview-card p {
+      font-size: 1.02rem;
+      color: #232946;
+      margin-bottom: 0.2rem;
+    }
+    .floating-shape {
+      position: absolute;
+      z-index: 0;
+      opacity: 0.13;
+      pointer-events: none;
+      animation: float 5.5s ease-in-out infinite alternate;
+    }
+    .floating-shape.shape1 {
+      top: -30px; left: -30px;
+      width: 90px; height: 90px;
+      background: radial-gradient(circle at 30% 30%, #43cea2 60%, #27ae60 100%);
+      border-radius: 50%;
+    }
+    .floating-shape.shape2 {
+      bottom: -30px; right: -30px;
+      width: 70px; height: 70px;
+      background: radial-gradient(circle at 70% 70%, #357ab8 60%, #4a90e2 100%);
+      border-radius: 50%;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-18px) scale(1.08); }
+    }
+    footer {
+      background: #232946;
+      color: #fff;
+      text-align: center;
+      padding: 1.2rem 0 0.7rem 0;
+      margin-top: auto;
+      font-size: 1rem;
+      letter-spacing: 0.2px;
+      box-shadow: 0 -2px 12px rgba(52,152,219,0.08);
+    }
+    @media (max-width: 900px) {
+      .overview-section {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+      }
+      .hero {
+        margin: 1.5rem 1rem 1.2rem 1rem;
+        padding: 1.5rem 1rem 1.2rem 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
+
   <header>
-    <h1>Welcome to My Learning Platform</h1>
+    <h1>Welcome to the Brain-Based Learning Platform</h1>
     <nav>
       <a href="login.php">Login</a>
       <a href="register.php">Register</a>
@@ -17,13 +190,39 @@
   </header>
 
   <section class="hero">
-    <h2>Discover your learning style with MWTL</h2>
-    <p>Personalized learning for every student.</p>
-    <a href="courses.php" class="cta-button">Start Learning</a>
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+    <h2>Discover Your Learning Style with MWTL</h2>
+    <p>Personalized, science-backed education for every student.<br>Unleash your potential with tailored courses and interactive quizzes.</p>
+  <a href="login.php" class="cta-button">Start Learning</a>
+  <div style="margin-top: 1rem; color: #d7263d; font-weight: 700; font-size: 1.08rem; letter-spacing: 0.2px;">To start learning, <span style='color:#357ab8;'>please log in first</span>.</div>
+  </section>
+
+  <section class="overview-section">
+    <div class="overview-card">
+      <span class="icon">🎯</span>
+      <h3>Personalized Learning</h3>
+      <p>Get course recommendations and resources based on your unique learning style.</p>
+    </div>
+    <div class="overview-card">
+      <span class="icon">🧠</span>
+      <h3>Science-Backed Approach</h3>
+      <p>Our platform uses the Multiple Ways to Learn (MWTL) model to empower every learner.</p>
+    </div>
+    <div class="overview-card">
+      <span class="icon">📚</span>
+      <h3>Rich Course Library</h3>
+      <p>Explore a wide range of courses, resources, and quizzes designed for all learning styles.</p>
+    </div>
+    <div class="overview-card">
+      <span class="icon">🚀</span>
+      <h3>Track Your Progress</h3>
+      <p>Monitor your achievements and growth with interactive dashboards and reports.</p>
+    </div>
   </section>
 
   <footer>
-    <p>&copy; 2025 My Learning Platform. All rights reserved.</p>
+    <p>&copy; 2025 Brain-Based Learning Platform. Empowering learners with science-backed education.</p>
   </footer>
 
 </body>
