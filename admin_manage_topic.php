@@ -1,3 +1,4 @@
+<!-- ...existing code... -->
 <?php
 session_start();
 include("includes/db.php");
@@ -53,29 +54,241 @@ $result = $stmt->get_result();
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+      .footer {
+        background: #232946;
+        color: #fff;
+        width: 100%;
+        margin-top: 0;
+        padding: 0;
+      }
+      .footer-content {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1.5rem 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+      }
+      .footer-content strong {
+        color: #43cea2;
+      }
+      .footer-content a {
+        color: #f4faff;
+        text-decoration: none;
+        margin-right: 10px;
+        transition: color 0.2s;
+      }
+      .footer-content a:hover {
+        color: #43cea2;
+        text-decoration: underline;
+      }
+      .footer-content div {
+        flex: 1 1 200px;
+        min-width: 180px;
+      }
+    </style>
   <meta charset="UTF-8">
   <title>Manage Topics</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-    th, td { padding: 0.75rem; border: 1px solid #ccc; text-align: left; }
-    th { background-color: #f9f9f9; }
-    form.filter-form { margin-top: 1rem; margin-bottom: 1rem; }
-    .button { padding: 6px 12px; background-color: #007bff; color: white; border: none; border-radius: 4px; text-decoration: none; }
-    .danger { background-color: #dc3545; }
+    body {
+      background: linear-gradient(to right, #43cea2, #185a9d);
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Inter', Arial, sans-serif;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: #357ab8;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-item {
+      color: white;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      position: relative;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+      box-shadow: 0 2px 8px rgba(52, 152, 219, 0);
+      display: inline-block;
+    }
+    .nav-item:hover {
+      background: #fff;
+      color: #357ab8;
+      box-shadow: 0 2px 8px rgba(52, 152, 219, 0.15);
+      transform: translateY(-2px) scale(1.07);
+    }
+    .nav-item.active {
+      background: #fff;
+      color: #357ab8;
+      font-weight: 900;
+      box-shadow: 0 2px 12px rgba(52, 152, 219, 0.18);
+      border: 2px solid #357ab8;
+      transform: scale(1.12);
+      z-index: 2;
+    }
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      margin-left: 1rem;
+    }
+    @media (max-width: 900px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+      }
+      .nav-links {
+        width: 100%;
+        flex-direction: column;
+        gap: 0.5rem;
+        display: none;
+        background: #357ab8;
+        border-radius: 0 0 10px 10px;
+        margin-top: 0.5rem;
+        padding: 1rem 0;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+    .main-wrapper {
+      flex: 1 0 auto;
+      background: #fff;
+      border-radius: 12px;
+      max-width: 1100px;
+      margin: 2rem auto 1rem auto;
+      box-shadow: 0 2px 16px rgba(52, 152, 219, 0.07);
+      padding: 2rem 2.5vw;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background: #f8fafc;
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 1rem;
+    }
+    th, td {
+      padding: 0.75rem 0.7rem;
+      border-bottom: 1px solid #e0e6ed;
+      text-align: left;
+    }
+    th {
+      background: #eaf1fb;
+      color: #185a9d;
+      font-weight: 700;
+      border-bottom: 2px solid #d0d8e4;
+    }
+    tr:nth-child(even) td {
+      background: #f4f8fb;
+    }
+    tr:hover td {
+      background: #e3ecf7;
+    }
+    form.filter-form {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+      background: #f8fafc;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(52, 152, 219, 0.04);
+    }
+    form.filter-form label {
+      font-weight: 600;
+      color: #357ab8;
+    }
+    form.filter-form select {
+      margin-left: 0.5rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      border: 1px solid #b5c6d6;
+      background: #fff;
+      font-size: 1rem;
+    }
+    .button {
+      padding: 7px 18px;
+      background: #357ab8;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(52, 152, 219, 0.07);
+    }
+    .button:hover {
+      background: #185a9d;
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(52, 152, 219, 0.13);
+    }
+    .danger {
+      background: #dc3545;
+      color: #fff;
+    }
+    .danger:hover {
+      background: #b52a37;
+    }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Manage Topics</h1>
-  <nav>
-    <a href="admin_dashboard.php">Dashboard</a>
-    <a href="admin_add_topic.php">Add Topic</a>
-    <a href="logout.php">Logout</a>
-  </nav>
+  <div class="navbar">
+    <div class="logo">
+      <a href="admin.php" class="logo" style="display: flex; align-items: center; text-decoration: none; color: white;">
+        <img src="images/BBL-Logo.png" alt="Brain-Based Learning Portal" style="height: 40px; width: auto; margin-right: 10px;">
+        <span class="name1">Brain<span class="name3">-</span>Based</span><span class="name2">Learning</span>
+      </a>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="admin.php" class="nav-item">Admin Dashboard</a>
+      <a href="admin_add_topic.php" class="nav-item">Add Topic</a>
+      <a href="logout.php" class="nav-item">Logout</a>
+    </nav>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </div>
+  </div>
 </header>
 
+<div class="main-wrapper">
 <main>
   <form class="filter-form" method="get">
     <label>Course:
@@ -149,11 +362,36 @@ $result = $stmt->get_result();
   <?php else: ?>
     <p>No topics found.</p>
   <?php endif; ?>
-</main>
+ </main>
+</div>
 
-<footer>
-  <p>&copy; 2025 My Learning Platform</p>
+
+
+<footer class="footer">
+  <div class="footer-content">
+    <div>
+      <strong>&copy; 2025 Brain-Based Learning Platform</strong><br>
+      Empowering learners with science-backed education.
+    </div>
+    <div>
+      <strong>Quick Links</strong><br>
+      <a href="dashboard.php">User Dashboard</a>
+      <a href="admin.php">Admin Dashboard</a>
+      <a href="courses.php">Courses</a>
+      <a href="logout.php">Logout</a>
+    </div>
+    <div>
+      <strong>Contact</strong><br>
+      Email: <a href="mailto:2002032@icte.bdu.ac.bd">2002032@icte.bdu.ac.bd</a><br>
+      <span>Phone: +8801887240900</span>
+    </div>
+  </div>
 </footer>
 
 </body>
+<script>
+  function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+  }
+</script>
 </html>
