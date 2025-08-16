@@ -398,8 +398,8 @@ $existing_topics = $conn->query("SELECT t.id, t.title, c.title as course_title F
 <div class="main-wrapper">
   <div class="form-container">
     <div class="form-header">
-      <h1>Quiz Creator</h1>
-      <p>Create quiz topics and add questions in one place</p>
+      <h1>BBL Quiz System</h1>
+      <p></p>
     </div>
 
     <div class="step-indicator">

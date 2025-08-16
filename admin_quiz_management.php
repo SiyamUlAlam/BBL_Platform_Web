@@ -402,7 +402,7 @@ $quiz_topics = $conn->query("SELECT t.id, t.title, t.description, c.title as cou
       <h3>Quick Actions</h3>
       <div style="display: flex; gap: 1rem; justify-content: center; margin: 1rem 0;">
         <a href="admin_add_quiz.php" class="btn btn-primary">📝 Add Questions</a>
-        <a href="admin_manage_quizzes.php" class="btn btn-secondary">👁️ View All Questions</a>
+        <!-- <a href="admin_manage_quizzes.php" class="btn btn-secondary">👁️ View All Questions</a> -->
       </div>
     </div>
 
